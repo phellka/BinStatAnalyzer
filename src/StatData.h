@@ -8,4 +8,4 @@ typedef struct StatData {
     unsigned int mode:3;
 } StatData;
 
-void printStatData(const StatData* statData);
+void PrintStatData(const StatData* statData);

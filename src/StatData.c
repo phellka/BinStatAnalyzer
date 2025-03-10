@@ -7,9 +7,9 @@ void printBinary(int num, int length) {
     }
 }
 
-void printStatData(const StatData* statData) {
-    printf("%lX %d %.3e %c ", statData->id, statData->count, statData->cost, 
-        statData->primary == 0 ? 'n' : 'y');
+void PrintStatData(const StatData* statData) {
+    printf("| %-15lX | %-7d | %-12.3e | %-7c | ", 
+        statData->id, statData->count, statData->cost, statData->primary == 0 ? 'n' : 'y');
     printBinary(statData->mode, 3);
-    printf("\n");
+    printf("  |\n");
 }

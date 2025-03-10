@@ -2,5 +2,5 @@
 
 #include "StatCollection.h"
 
-void StoreDump(StatCollection* stats, const char* fileName);
-void LoadDump(StatCollection* stats, const char* fileName);
+int StoreDump(StatCollection* stats, const char* fileName);
+int LoadDump(StatCollection* stats, const char* fileName);
