@@ -88,7 +88,7 @@ int JoinCollections(const StatCollection* left, const StatCollection* right, Sta
         return 1;
     }
     StatData* temp = realloc(res->items, res->size * sizeof(StatData));
-    if (temp == NULL) {
+    if (res->size != 0 && temp == NULL) {
         perror("Failed to realloc memory for merged collection");
         free(res->items);
         return 1;
