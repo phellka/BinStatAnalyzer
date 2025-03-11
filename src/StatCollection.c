@@ -82,7 +82,7 @@ int JoinCollections(const StatCollection* left, const StatCollection* right, Sta
         }
     }
     res->size = size;
-    if (size >= left->size + right->size) {
+    if (size > left->size + right->size) {
         fprintf(stderr, "Error: Size exceeds allocated space\n");
         free(res->items);
         return 1;
