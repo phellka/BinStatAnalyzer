@@ -22,5 +22,6 @@ typedef struct Test {
     void (*prepareTestData)(Test* test);
 } Test;
 
+int compare_by_cost(const void* a, const void* b);
 int CompareResults(const StatCollection *expected, const StatCollection *actual);
 double ExecTest(Test* test);

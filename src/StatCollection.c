@@ -7,7 +7,12 @@ int compStaDataById(const void* a, const void* b) {
 }
 
 int compStaDataByCost(const void* a, const void* b) {
-    return (*(StatData*)a).cost - (*(StatData*)b).cost;
+    float cost_a = ((StatData*)a)->cost;
+    float cost_b = ((StatData*)b)->cost;
+    if ((cost_a > cost_b) - (cost_a < cost_b) != 0) {
+        return (cost_a > cost_b) - (cost_a < cost_b);
+    }
+    return ((StatData*)a)->id - ((StatData*)b)->id;
 }
 
 int SortDump(StatCollection* stats) {
@@ -36,6 +41,8 @@ void copyStatData(StatData* target, const StatData* source) {
     target->mode = source->mode;
     target->primary = source->primary;
 }
+
+
 
 int JoinDump(const StatCollection* left, const StatCollection* right, StatCollection* res) {
     if (left == NULL || right == NULL)  {

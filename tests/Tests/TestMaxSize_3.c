@@ -7,11 +7,6 @@ static StatData case_in_b[100000];
 static StatData case_out[50000];
 
 
-static int compare_by_cost(const void* a, const void* b) {
-    float cost_a = ((StatData*)a)->cost;
-    float cost_b = ((StatData*)b)->cost;
-    return cost_a - cost_b;
-}
 
 static void prepareTestData(Test* test) {
     for (int i = 0; i < 100000; i++) {

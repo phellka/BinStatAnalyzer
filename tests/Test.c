@@ -2,6 +2,15 @@
 #include <math.h>
 #include <time.h>
 
+int compare_by_cost(const void* a, const void* b) {
+    float cost_a = ((StatData*)a)->cost;
+    float cost_b = ((StatData*)b)->cost;
+    if ((cost_a > cost_b) - (cost_a < cost_b) != 0) {
+        return (cost_a > cost_b) - (cost_a < cost_b);
+    }
+    return ((StatData*)a)->id - ((StatData*)b)->id;
+}
+
 int CompareResults(const StatCollection *expected, const StatCollection *actual) {
     if (expected->size != actual->size) return 1;
     for (size_t i = 0; i < expected->size; i++) {
@@ -10,6 +19,7 @@ int CompareResults(const StatCollection *expected, const StatCollection *actual)
             fabs(expected->items[i].cost - actual->items[i].cost) > 0.001 ||
             expected->items[i].primary != actual->items[i].primary ||
             expected->items[i].mode != actual->items[i].mode) {
+                printf("%f %f %ld\n\n", expected->items[i].cost, actual->items[i].cost, i);
             return 1; 
         }
     }
