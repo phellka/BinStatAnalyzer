@@ -1,6 +1,6 @@
 #include "Test.h"
 #include <math.h>
-#include <time.h>
+#include <sys/time.h>
 
 int compare_by_cost(const void* a, const void* b) {
     float cost_a = ((StatData*)a)->cost;
@@ -29,9 +29,8 @@ int CompareResults(const StatCollection *expected, const StatCollection *actual)
 double ExecTest(Test* test) {
     test->prepareTestData(test);
 
-    clock_t start, end;
-    double cpuTimeUsed;
-    start = clock(); 
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
 
     StatCollection col_a = { .items = test->input_a, .size = test->size_a };
     StatCollection col_b = { .items = test->input_b, .size = test->size_b };
@@ -57,12 +56,12 @@ double ExecTest(Test* test) {
 
     free(result.items);
 
-    end = clock();  
-    cpuTimeUsed = ((double)(end - start)) / CLOCKS_PER_SEC;
+    gettimeofday(&end, NULL);
+    double elapsed = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
     if (testPassed) {
         fprintf(stderr, "Error: processed data does not match expected results!\n");
         return -1;
     } else {
-        return cpuTimeUsed;
+        return elapsed;
     }
 }
