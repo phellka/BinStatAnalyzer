@@ -10,7 +10,7 @@ int compStaDataByCost(const void* a, const void* b) {
     return (*(StatData*)a).cost - (*(StatData*)b).cost;
 }
 
-int SortCollection(StatCollection* stats) {
+int SortDump(StatCollection* stats) {
     if (stats == NULL) {
         fprintf(stderr, "Error: Invalid stats pointer\n");
         return 1;
@@ -37,7 +37,7 @@ void copyStatData(StatData* target, const StatData* source) {
     target->primary = source->primary;
 }
 
-int JoinCollections(const StatCollection* left, const StatCollection* right, StatCollection* res) {
+int JoinDump(const StatCollection* left, const StatCollection* right, StatCollection* res) {
     if (left == NULL || right == NULL)  {
         fprintf(stderr, "Error: Invalid collection pointer\n");
         return 1;
@@ -45,7 +45,8 @@ int JoinCollections(const StatCollection* left, const StatCollection* right, Sta
     qsort(left->items, left->size, sizeof(StatData), compStaDataById);
     qsort(right->items, right->size, sizeof(StatData), compStaDataById);
 
-    res->items = malloc((left->size + right->size) * sizeof(StatData));
+    size_t capacity = (left->size + right->size) / 10 + 1;
+    res->items = malloc(capacity * sizeof(StatData));
     if (res->items  == NULL) {
         perror("Failed to allocate memory for items");
         return 1;
@@ -55,30 +56,34 @@ int JoinCollections(const StatCollection* left, const StatCollection* right, Sta
     size_t size = 0;
     while (l < left->size || r < right->size) {
         StatData* newData;
-        size_t* indNewData;
         if (l >= left->size) {
-            newData = &right->items[r];
-            indNewData = &r;
+            newData = &right->items[r++];
         } else
         if (r >= right->size) {
-            newData = &left->items[l];
-            indNewData = &l;
+            newData = &left->items[l++];
         } else
         if (left->items[l].id < right->items[r].id) {
-            newData = &left->items[l];
-            indNewData = &l;
+            newData = &left->items[l++];
         } else {
-            newData = &right->items[r];
-            indNewData = &r;
+            newData = &right->items[r++];
         }
 
         if (size > 0 && newData->id == res->items[size - 1].id) {
             mergeStatData(&res->items[size - 1], newData);
-            (*indNewData)++;
         }
         else {
+            if (size >= capacity) {
+                int a = 10;
+                capacity = capacity * 2;  
+                StatData* temp = realloc(res->items, capacity * sizeof(StatData));
+                if (temp == NULL) {
+                    perror("Failed to realloc memory");
+                    free(res->items);
+                    return 1;
+                }
+                res->items = temp;
+            }
             copyStatData(&res->items[size++], newData);
-            (*indNewData)++;
         }
     }
     res->size = size;

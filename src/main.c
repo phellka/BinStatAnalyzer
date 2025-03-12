@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
     StatCollection collectionRes;
-    if (JoinCollections(&collection1, &collection2, &collectionRes) != 0) {
+    if (JoinDump(&collection1, &collection2, &collectionRes) != 0) {
         printf("Error joinDump %s\n", argv[3]);
         free(collection1.items); 
         free(collection2.items); 
@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
     free(collection1.items);
     free(collection2.items);
 
-    SortCollection(&collectionRes);
+    SortDump(&collectionRes);
     if (StoreDump(&collectionRes, argv[3]) != 0) {
         free(collectionRes.items);
         printf("Error save file %s\n", argv[3]);

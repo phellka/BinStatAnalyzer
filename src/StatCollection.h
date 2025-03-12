@@ -11,5 +11,5 @@ typedef struct
 } StatCollection;
 
 
-int JoinCollections(const StatCollection* left, const StatCollection* right, StatCollection* res);
-int SortCollection(StatCollection* stats);
+int JoinDump(const StatCollection* left, const StatCollection* right, StatCollection* res);
+int SortDump(StatCollection* stats);
