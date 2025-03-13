@@ -1,4 +1,4 @@
-#include "TestEmptyInput_3.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
 };

@@ -1,4 +1,4 @@
-#include "TestEdgeCase_1.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
     {.id = 0, .count = 0, .cost = 0.0, .primary = 0, .mode = 0}

@@ -1,4 +1,4 @@
-#include "TestSorting_1.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
     {.id = 1, .count = 5, .cost = 1.1, .primary = 1, .mode = 1},

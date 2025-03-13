@@ -1,4 +1,4 @@
-#include "TestEdgeCase_1.h"
+#include "AllTests.h"
 #include <limits.h>
 #include <float.h>
 

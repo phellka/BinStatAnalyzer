@@ -1,4 +1,4 @@
-#include "TestAverageSize_1.h"
+#include "AllTests.h"
 
 static StatData case_in_a[1000];
 

@@ -1,4 +1,4 @@
-#include "TestSmallJoin_2.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
     {.id = 1, .count = 10, .cost = 2.5, .primary = 1, .mode = 1},

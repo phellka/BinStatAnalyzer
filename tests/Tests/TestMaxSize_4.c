@@ -1,4 +1,4 @@
-#include "TestMaxSize_4.h"
+#include "AllTests.h"
 #include <limits.h>
 #include <float.h>
 

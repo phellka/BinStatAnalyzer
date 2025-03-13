@@ -1,4 +1,4 @@
-#include "TestAverageSize_5.h"
+#include "AllTests.h"
 #include <limits.h>
 #include <float.h>
 

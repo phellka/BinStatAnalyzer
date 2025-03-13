@@ -1,4 +1,4 @@
-#include "TestMaxSize_3.h"
+#include "AllTests.h"
 
 static StatData case_in_a[100000];
 

@@ -1,4 +1,4 @@
-#include "TestSmallDuplicates_2.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
     {.id = 200, .count = 3, .cost = 1.0, .primary = 1, .mode = 0},

@@ -1,4 +1,4 @@
-#include "TestEmptyInput_2.h"
+#include "AllTests.h"
 
 static const StatData case_in_a[] = {
     {.id = 500, .count = 20, .cost = 5.5, .primary = 1, .mode = 2}
